@@ -3,12 +3,18 @@ import dotenv from "dotenv";
 import pool from "./db.js";
 import authRouter from "./routes/auth.js";
 
+import cartRouter from "./routes/cart.js";
+import orderRouter from "./routes/orders.js";
+
 dotenv.config();
+
 const app = express();
 app.use(express.json());
 
 // 1) Public auth endpoints
 app.use("/auth", authRouter);
+app.use("/cart", cartRouter);
+app.use("/orders", orderRouter);
 
 // 2) Existing product test endpoint
 app.get("/products", async (req, res) => {
